@@ -11,11 +11,15 @@ from .core import judge, make_secret
 
 def play(digits=3):
     secret = make_secret(digits)
-    print(f"Hit & Blow（{digits} 桁・重複なし）")
+
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
+    from .select_digits import select_digits
 
+    digits = select_digits()        # 新しいファイルから関数を呼び出して桁数を取得
+    secret = make_secret(digits)   # 新しい桁数で答えを作り直す
     tries = 0
+    print(f"Hit & Blow（{digits} 桁・重複なし）")
     while True:
         guess = input("予想 > ").strip()
 

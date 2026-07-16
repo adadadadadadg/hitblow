@@ -1,3 +1,4 @@
+
 """`python -m hitblow` で遊ぶための入口。"""
 
 from .cli import main
