@@ -27,7 +27,11 @@ def play(digits=3):
         # 例:  from .hint import hint
         #      if guess == "h":
         #          print(hint(secret)); continue
-
+        if guess == "s":
+            from .help import get_safe_digit
+            safe_num = get_safe_digit(secret)
+            print(f"【ヒント】数字の「{safe_num}」は答えに含まれていません！")
+            continue
         if len(guess) != digits or not guess.isdigit():
             print(f"{digits} 桁の数字で入力してね")
             continue
