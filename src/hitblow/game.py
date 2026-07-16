@@ -14,6 +14,16 @@ def play(digits=3):
     print(f"Hit & Blow（{digits} 桁・重複なし）")
 
     # ===== ① 開始時に足す（難易度・あいさつ など）: ここに書く =====
+     while True:
+        choice = input("桁数を選んでください（3 または 4） > ").strip()
+        if choice in ("3", "4"):
+            digits = int(choice)
+            break
+        print("3 または 4 を入力してください。")
+
+    secret = make_secret(digits)
+
+    print(f"Hit & Blow（{digits} 桁・重複なし）")
 
     tries = 0
     while True:
