@@ -22,6 +22,12 @@ def play(digits=3):
     from .timer import start_timer
     start_time = start_timer()
 
+   
+   # ★追加①：スキル説明と使用回数
+    from .help import show_skill_info
+    skill_count = 0
+    show_skill_info()
+   
     tries = 0
     print(f"Hit & Blow（{digits} 桁・重複なし）")
     while True:
@@ -33,9 +39,10 @@ def play(digits=3):
         #          print(hint(secret)); continue
         if guess == "s":
             from .help import get_safe_digit
-            safe_num = get_safe_digit(secret)
-            print(f"【ヒント】数字の「{safe_num}」は答えに含まれていません！")
+            from .help import use_skill
+            skill_count, _ = use_skill(secret, skill_count)
             continue
+           
         if len(guess) != digits or not guess.isdigit():
             print(f"{digits} 桁の数字で入力してね")
             continue
