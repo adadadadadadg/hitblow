@@ -18,6 +18,10 @@ def play(digits=3):
 
     digits = select_digits()        # 新しいファイルから関数を呼び出して桁数を取得
     secret = make_secret(digits)   # 新しい桁数で答えを作り直す
+
+    from .timer import start_timer
+    start_time = start_timer()
+
    
    # ★追加①：スキル説明と使用回数
     from .help import show_skill_info
@@ -48,6 +52,9 @@ def play(digits=3):
         if hit == digits:
 
             # ===== ③ 勝利時に足す（スコア・履歴 など）: ここに書く =====
+            from .timer import show_elapsed_time
+
+            show_elapsed_time(start_time)
 
             print(f"正解！ {tries} 回で当たり（答え {secret}）")
             break
