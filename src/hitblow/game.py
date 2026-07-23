@@ -18,6 +18,12 @@ def play(digits=3):
 
     digits = select_digits()        # 新しいファイルから関数を呼び出して桁数を取得
     secret = make_secret(digits)   # 新しい桁数で答えを作り直す
+   
+   # ★追加①：スキル説明と使用回数
+    from .help import show_skill_info
+    skill_count = 0
+    show_skill_info()
+   
     tries = 0
     print(f"Hit & Blow（{digits} 桁・重複なし）")
     while True:
@@ -29,9 +35,10 @@ def play(digits=3):
         #          print(hint(secret)); continue
         if guess == "s":
             from .help import get_safe_digit
-            safe_num = get_safe_digit(secret)
-            print(f"【ヒント】数字の「{safe_num}」は答えに含まれていません！")
+            from .help import use_skill
+            skill_count, _ = use_skill(secret, skill_count)
             continue
+           
         if len(guess) != digits or not guess.isdigit():
             print(f"{digits} 桁の数字で入力してね")
             continue
